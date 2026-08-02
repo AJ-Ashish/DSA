@@ -14,45 +14,48 @@
  * }
  */
 
- class Solution {
-    int dfs(TreeNode root) {
+//  class Solution {
+//     int dfs(TreeNode root) {
+//         if(root == null) {
+//             return 0;
+//         }
+//         if(root.left == null && root.right == null) {
+//             return 1;
+//         }
+//         int leftDepth = (root.left != null) ? dfs(root.left) :  Integer.MAX_VALUE;
+//         int rightDepth = (root.right != null) ? dfs(root.right) :  Integer.MAX_VALUE;
+//         return Math.min(leftDepth,rightDepth)+1;
+//     } 
+//     public int minDepth(TreeNode root) {
+//         return dfs(root);
+//     }
+// }
+class Solution {
+    public int minDepth(TreeNode root) {
         if(root == null) {
             return 0;
         }
-        if(root.left == null && root.right == null) {
-            return 1;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        int depth = 1;
+
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            for(int i=0; i<size; i++) {
+                TreeNode node = queue.poll();
+                if(node.left == null && node.right == null) {
+                    return depth;
+                }
+                if(node.left != null) {
+                    queue.offer(node.left);
+                }
+                if(node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            depth++;
         }
-        int leftDepth = (root.left != null) ? dfs(root.left) :  Integer.MAX_VALUE;
-        int rightDepth = (root.right != null) ? dfs(root.right) :  Integer.MAX_VALUE;
-        return Math.min(leftDepth,rightDepth)+1;
-    } 
-    public int minDepth(TreeNode root) {
-        return dfs(root);
+        return -1;
     }
 }
-// class Solution {
-//     public int minDepth(TreeNode root) {
-//         Queue<TreeNode> queue = new LinkedList<>();
-//         queue.offer(root);
-
-//         int level = 1;
-
-//         while(!queue.isEmpty()) {
-//             int size = queue.size();
-//             for(int i=0; i<size; i++) {
-//                 TreeNode node = queue.poll();
-//                 if(node.left == null && node.right == null) {
-//                     return level;
-//                 }
-//                 if(node.left != null) {
-//                     queue.offer(node.left);
-//                 }
-//                 if(node.right != null) {
-//                     queue.offer(node.right);
-//                 }
-//             }
-//             level++;
-//         }
-//         return level;
-//     }
-// }
