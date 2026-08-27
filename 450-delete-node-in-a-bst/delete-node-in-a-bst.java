@@ -39,7 +39,7 @@ class Solution {
 
             // Both children exist 
             TreeNode successor = root.right;
-
+            // Inorder successor = right subtree ka smallest element.
             while(successor.left != null) {
                 successor = successor.left;
             }
