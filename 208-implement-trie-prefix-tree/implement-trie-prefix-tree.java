@@ -1,9 +1,10 @@
-class Trie {
-    class TrieNode {
-        boolean isEndOfWord = false;
-        TrieNode children[] = new TrieNode[26];
-    }
 
+class TrieNode {
+    boolean isEndOfWord = false;
+    TrieNode children[] = new TrieNode[26];
+}
+
+class Trie {
 
     TrieNode root;
 
