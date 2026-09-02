@@ -1,10 +1,10 @@
 
-class TrieNode {
-    boolean isEndOfWord = false;
-    TrieNode children[] = new TrieNode[26];
-}
-class Solution {
 
+class Solution {
+    class TrieNode {
+        boolean isEndOfWord = false;
+        TrieNode children[] = new TrieNode[26];
+    }
     TrieNode root = new TrieNode();
 
     void insert(List<String> dictionary) {
@@ -23,9 +23,6 @@ class Solution {
         }
     }
     String replaceWord(String word) {
-        if(word.length() == 0) {
-            return "";
-        }
         TrieNode crawler = root;
         for(int i=0; i<word.length();i++) {
             char ch = word.charAt(i);
