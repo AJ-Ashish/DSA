@@ -21,7 +21,7 @@ class Solution {
         crawler.word = word;
     }
 
-    List<String> result = new ArrayList<>();
+    List<String> result;
     int directions[][] = {{1,0}, {-1,0}, {0,1}, {0,-1}};
     void dfs(char[][] board, int i, int j, TrieNode node) {
         if(i < 0 || i >= board.length || j < 0 || j >= board[0].length) {
@@ -49,6 +49,7 @@ class Solution {
         board[i][j] = temp;
     }
     public List<String> findWords(char[][] board, String[] words) {
+        result = new ArrayList<>();
         TrieNode root = new TrieNode();
 
         for(String word : words) {
