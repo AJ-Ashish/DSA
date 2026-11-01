@@ -1,21 +1,18 @@
 class Solution {
     public long largestPerimeter(int[] nums) {
-        if(nums.length < 3) {
-            return -1;
-        }
         Arrays.sort(nums);
-        long sum = 0;
+        long cummSum = 0;
+        long perimeter = -1;
         
         for(int i=0; i<nums.length; i++) {
-            sum += (long)nums[i];
+            // Since cummSum is already a long, comparing it with nums[i] 
+            // automatically promotes nums[i] to a long. Explicit cast here is optional.
+            if((long)nums[i] < cummSum) {
+                perimeter = cummSum+nums[i];
+            }
+            cummSum += (long)nums[i];
         }
 
-        for(int i=nums.length-1; i>=0; i--) {
-            if((sum - (long)nums[i]) > (long)nums[i]) {
-                return sum;
-            }
-            sum -= (long)nums[i];
-        }
-        return sum == 0 ? -1 : sum;
+        return perimeter;
     }
 }
